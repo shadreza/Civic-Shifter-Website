@@ -1,0 +1,21 @@
+.headerMainDiv{
+    display:flex;
+    padding: 0.5% 1%;
+}
+
+.headerNavLinksOnRight{
+    width:20%;
+    text-align:left;
+}
+
+.headerNavLinksOnRight{
+    margin: auto;
+    width:80%;
+    text-align:right;
+}
+
+.navLinks{
+    text-decoration: none;
+    margin: auto 1rem;
+}
+
