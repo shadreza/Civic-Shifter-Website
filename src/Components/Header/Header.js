@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import './Header.css';
 import { Button } from '@material-ui/core';
 import {
@@ -11,8 +11,27 @@ import HomePage from '../HomePage/HomePage';
 import Signup from '../Signup/Signup';
 import Login from '../Login/Login';
 import RidingPage from '../RidingPage/RidingPage';
+import { useHistory } from 'react-router-dom';
+import { ContextForUser } from '../../App';
 
 const Header = () => {
+
+    let history = useHistory();
+
+    const userInfoFromContext = useContext(ContextForUser);
+
+    const defaultUser  = {
+        name:"not set" ,
+        email: "not set" ,
+        photo: "not set" ,
+        isLoggedInOrNot : false
+      }
+    
+      const handleSignOutButton = () => {
+        userInfoFromContext[1](defaultUser);
+      }
+
+    
     return (
         <Router>
             <div className="headerMainDiv">
@@ -21,18 +40,32 @@ const Header = () => {
                         <h2>Civic Shifter</h2>
                     </Link>
                 </section>
+                <section className="headerUserImageInMiddle">
+                    {userInfoFromContext[0].photo !== "not set" && <img className="imageOfUser" src={userInfoFromContext[0].photo}></img>}
+                </section>
                 <section className="headerNavLinksOnRight">
                     <nav>
                         <Link className="navLinks" to='/' >Home</Link>
                         <Link className="navLinks" to='/destination' >Destination</Link>
                         <Link className="navLinks" to='/contact' >Contact</Link>
-                        <Link className="navLinks" to='/login' >
-                            {
-                                <Button variant="outlined" color="secondary">
-                                    Login
-                                </Button>
-                            }
-                        </Link>
+                        {
+                            userInfoFromContext[0].isLoggedInOrNot ===  false ? 
+                                <Link className="navLinks" to='/login' >
+                                    {
+                                        <Button variant="outlined" color="secondary">
+                                            Login
+                                        </Button>
+                                    }
+                                </Link> :
+                                <Link className="navLinks" to='/'  onClick={() => handleSignOutButton()}>
+                                    {
+                                        <Button variant="outlined" color="secondary">
+                                            Logout
+                                        </Button>
+                                    }
+                                </Link>
+                        }
+                        
                     </nav>
                 </section>
             </div>

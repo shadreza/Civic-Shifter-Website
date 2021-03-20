@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './Login.css';
 import { Button, FormControl, Grid, InputLabel, makeStyles, OutlinedInput, TextField } from '@material-ui/core';
 import EmailIcon from '@material-ui/icons/Email';
@@ -8,9 +8,13 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import LockIcon from '@material-ui/icons/Lock';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import googleLogo from '../Images/google-logo.svg';
-
+import firebase from "firebase/app";
+import "firebase/auth";
+import firebaseConfig from "../FireBaseConfig/firebase.config";
+import { ContextForUser } from '../../App';
+// import firebaseui from 'firebaseui';
 const useStyles = makeStyles((theme) => ({
     root: {
       display: 'flex',
@@ -28,6 +32,41 @@ const useStyles = makeStyles((theme) => ({
   }));
 
 const Login = () => {
+
+    let history = useHistory();
+
+    // const ui = new firebaseui.auth.AuthUI(firebase.auth());
+    // const logInWithEmail = () => {
+    //     ui.start('#firebaseui-auth-container', {
+    //         signInOptions: [
+    //           firebase.auth.EmailAuthProvider.PROVIDER_ID
+    //         ],
+    //         // Other config options...
+    //       });
+    // }
+
+    const userInfoFromContext = useContext(ContextForUser);
+
+    const googleProvider = new firebase.auth.GoogleAuthProvider();
+    const handleContinueWithGoogleButton = () => {
+        firebase.auth().signInWithPopup(googleProvider)
+        .then(response => {
+            const {displayName , email , photoURL} = response.user;
+            const userData = {
+                name: displayName ,
+                email: email ,
+                photo: photoURL ,
+                isLoggedInOrNot : true
+            }
+            userInfoFromContext[1](userData);
+            history.goBack();
+        })
+        .catch(err => {
+            alert("There Was A Problem Signing In. Please Try Again Later!");
+            console.log(err.code);
+        })
+    }
+
     const classes = useStyles();
     const [values, setValues] = React.useState({
       amount: '',
@@ -106,7 +145,7 @@ const Login = () => {
             <hr/>
             <div>
                 <p><small>OR</small></p>
-                <Button className="continueWithGoogleButton" variant="contained" color="secondary">
+                <Button className="continueWithGoogleButton" variant="contained" color="secondary" onClick={()=>{handleContinueWithGoogleButton()}}>
                     <img src={googleLogo} alt="..."/> Continue With Google
                 </Button>
             </div>

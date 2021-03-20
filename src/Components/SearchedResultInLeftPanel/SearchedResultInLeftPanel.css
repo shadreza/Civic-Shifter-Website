@@ -18,4 +18,11 @@ strong{
     padding: 1rem;
     background: moccasin;
     border-radius: 20px;
+    margin-bottom: 1rem;
+}
+
+.transportDiv{
+    padding: 1rem;
+    background: orange;
+    border-radius: 20px;
 }

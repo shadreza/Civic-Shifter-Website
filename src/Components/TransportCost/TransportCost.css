@@ -1,0 +1,32 @@
+.transportCostMainDiv{
+    background-color: linen;
+    padding:1rem;
+    display: flex;
+    margin: 10px auto;
+    border-radius: 10px;
+}
+
+.leftSideImage{
+    width:24%;
+    padding: 5px;
+    background: goldenrod;
+    border-radius: 100%;
+    margin-right: 10px;
+}
+
+.leftSideImage img{
+    width:100%;
+    border-radius: 100%;
+}
+
+.rightSideInfo{
+    width:76%;
+    background-color: lightsalmon;
+    border-radius: 10px;
+    text-align: center;
+    color: white;
+}
+
+.rightSideInfo strong{
+    color: white;
+}

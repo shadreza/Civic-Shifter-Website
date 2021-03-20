@@ -1,4 +1,6 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useContext, useState } from 'react';
+import { Redirect, useHistory } from 'react-router-dom';
+import { ContextForUser } from '../../App';
 import Map from '../Map/Map';
 import SearchedResultInLeftPanel from '../SearchedResultInLeftPanel/SearchedResultInLeftPanel';
 import SearchingInLeftPanel from '../SearchingInLeftPanel/SearchingInLeftPanel';
@@ -8,6 +10,14 @@ export const ContextForHasBeenSearched = createContext([]);
 export const ContextForLocations = createContext([]);
 
 const RidingPage = () => {
+
+    let history = useHistory();
+
+    const userInfoFromContext = useContext(ContextForUser);
+    if(userInfoFromContext[0].isLoggedInOrNot === false){
+        alert('Please Log In First');
+        history.replace('/login/');
+    }
 
     const [hasBeenSearchedValue , sethasBeenSearchedValue] = useState(false);
     const [fromLocation , setFromLocation] = useState('');

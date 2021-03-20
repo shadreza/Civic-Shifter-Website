@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './Signup.css';
 import { Button, FormControl, Grid, InputLabel, makeStyles, OutlinedInput, TextField } from '@material-ui/core';
 import { AccountCircle } from '@material-ui/icons';
@@ -14,8 +14,13 @@ import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import LockIcon from '@material-ui/icons/Lock';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 import ButtonBase from '@material-ui/core/ButtonBase';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import googleLogo from '../Images/google-logo.svg';
+import firebase from "firebase/app";
+import "firebase/auth";
+import firebaseConfig from "../FireBaseConfig/firebase.config";
+import { ContextForUser } from '../../App';
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -34,6 +39,31 @@ const useStyles = makeStyles((theme) => ({
   }));
 
 const Signup = () => {
+
+    let history = useHistory();
+
+    const userInfoFromContext = useContext(ContextForUser);
+
+    const googleProvider = new firebase.auth.GoogleAuthProvider();
+    const handleContinueWithGoogleButton = () => {
+        firebase.auth().signInWithPopup(googleProvider)
+        .then(response => {
+            const {displayName , email , photoURL} = response.user;
+            const userData = {
+                name: displayName ,
+                email: email ,
+                photo: photoURL ,
+                isLoggedInOrNot : true
+            }
+            userInfoFromContext[1](userData);
+            history.goBack();
+        })
+        .catch(err => {
+            alert("There Was A Problem Signing In. Please Try Again Later!");
+            console.log(err.code);
+        })
+    }
+
     const classes = useStyles();
     const [values, setValues] = React.useState({
       amount: '',
@@ -156,7 +186,7 @@ const Signup = () => {
             <hr/>
             <div>
                 <p><small>OR</small></p>
-                <Button className="continueWithGoogleButton" variant="contained" color="secondary">
+                <Button className="continueWithGoogleButton" variant="contained" color="secondary"onClick={()=>{handleContinueWithGoogleButton()}}>
                     <img src={googleLogo} alt="..."/> Continue With Google
                 </Button>
             </div>

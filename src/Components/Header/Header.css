@@ -27,3 +27,8 @@
 .headerNavLinksOnRight nav .navLinks:focus{
     color: coral;
 }
+
+.imageOfUser{
+    width:100%;
+    border-radius: 100%;
+}

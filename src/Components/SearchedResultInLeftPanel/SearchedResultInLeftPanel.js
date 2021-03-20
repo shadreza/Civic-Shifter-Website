@@ -3,6 +3,8 @@ import './SearchedResultInLeftPanel.css';
 import React, { createContext, useContext, useState } from 'react';
 import { ContextForHasBeenSearched, ContextForLocations } from '../RidingPage/RidingPage';
 import clsx from 'clsx';
+import { ContextForTransport } from '../../App';
+import TransportCost from '../TransportCost/TransportCost';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -22,8 +24,10 @@ const useStyles = makeStyles((theme) => ({
   }));
 
 const SearchedResultInLeftPanel = () => {
+    const array = [0,1,2];
     const classes = useStyles();
     const hasBeenSearched = useContext(ContextForHasBeenSearched);
+    const transportInfoFromContext = useContext(ContextForTransport);
     const locationInfoFromContext = useContext(ContextForLocations);
     return (
         <div className="searchedResiultInLeftPanelMainDiv">
@@ -34,7 +38,9 @@ const SearchedResultInLeftPanel = () => {
                 <h3>{locationInfoFromContext[1][0]}</h3>
             </div>
             <div className="transportDiv">
-                
+                {
+                    array.map(()=><TransportCost transportData={transportInfoFromContext}></TransportCost>)
+                }
             </div>
         </div>
     );

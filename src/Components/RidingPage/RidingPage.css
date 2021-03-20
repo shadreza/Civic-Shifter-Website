@@ -1,18 +1,40 @@
-.ridingPageMainDiv{
-    display: flex;
-    justify-content: space-between;
-    padding:1rem;
-    margin-top: 2rem;
+@media only screen and (max-width: 600px) {
+    .ridingPageMainDiv{
+        display: block;
+        padding:1rem;
+        margin-top: 2rem;
+    }
+    
+    .leftPannelSearch{
+        width:100%;
+        text-align:center;
+        margin: auto 0;
+    }
+    
+    .rightPannelMap{
+        width:100%;
+        text-align:center;
+        margin: auto 0;
+    }
 }
 
-.leftPannelSearch{
-    width:28%;
-    text-align:left;
-    margin: auto 0;
-}
-
-.rightPannelMap{
-    width:68%;
-    text-align:right;
-    margin: auto 0;
+@media only screen and (min-width: 600px) {
+    .ridingPageMainDiv{
+        display: flex;
+        justify-content: space-between;
+        padding:1rem;
+        margin-top: 2rem;
+    }
+    
+    .leftPannelSearch{
+        width:28%;
+        text-align:left;
+        margin: auto 0;
+    }
+    
+    .rightPannelMap{
+        width:68%;
+        text-align:right;
+        margin: auto 0;
+    }
 }

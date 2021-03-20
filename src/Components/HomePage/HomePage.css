@@ -4,10 +4,20 @@
 
 .transportsGallerySection{
     display:grid;
-    grid-template-columns: auto auto auto auto;
+    margin: 10% auto;
     grid-gap: 1rem;
 }
 
-.transportsGallerySection{
-    margin: 10% auto;
+@media only screen and (max-width: 600px) {
+    .transportsGallerySection{
+        grid-template-columns: auto;
+        
+    }
+}
+
+@media only screen and (min-width: 600px) {
+    .transportsGallerySection{
+        grid-template-columns: auto auto auto auto;
+        margin: 10% auto;
+    }
 }
