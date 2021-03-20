@@ -1,0 +1,21 @@
+[
+    {
+        "nameOfTheTransport" : "Bike",
+        "imageOfTheTransport" : "https://github.com/ProgrammingHero1/urban-riders/blob/main/images/Frame.png?raw=true"
+    } , 
+
+    {
+        "nameOfTheTransport" : "Car",
+        "imageOfTheTransport" : "https://github.com/ProgrammingHero1/urban-riders/blob/main/images/Frame-2.png?raw=true"
+    } , 
+
+    {
+        "nameOfTheTransport" : "Bus",
+        "imageOfTheTransport" : "https://github.com/ProgrammingHero1/urban-riders/blob/main/images/Frame-1.png?raw=true"
+    } , 
+
+    {
+        "nameOfTheTransport" : "Train",
+        "imageOfTheTransport" : "https://github.com/ProgrammingHero1/urban-riders/blob/main/images/Group.png?raw=true"
+    }
+]

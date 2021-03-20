@@ -1,9 +1,12 @@
 import React from 'react';
+import './HomePage.css';
 
 const HomePage = () => {
     return (
-        <div>
-            
+        <div className="homepageMainDiv">
+            <section className="transportsGallerySection">
+                
+            </section>
         </div>
     );
 };
