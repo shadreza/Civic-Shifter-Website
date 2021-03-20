@@ -14,6 +14,8 @@ import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import LockIcon from '@material-ui/icons/Lock';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 import ButtonBase from '@material-ui/core/ButtonBase';
+import { NavLink } from 'react-router-dom';
+import googleLogo from '../Images/google-logo.svg';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -121,7 +123,7 @@ const Signup = () => {
                     <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined">
                                 <InputLabel htmlFor="outlined-adornment-password">Retype Password</InputLabel>
                                 <OutlinedInput
-                                    id="outlined-adornment-password"
+                                    id="outlined-adornment-retype-password"
                                     type={values.showPassword ? 'text' : 'password'}
                                     value={values.password}
                                     onChange={handleChange('password')}
@@ -145,9 +147,19 @@ const Signup = () => {
             </div>
             <div>
                 <Button variant="contained" color="secondary">
-                    Secondary
+                    Sign Up
                 </Button>
-            </div>       
+            </div>  
+            <p>
+                <small>Already Have An Account? <NavLink to="/login">Log In</NavLink></small>
+            </p>     
+            <hr/>
+            <div>
+                <p><small>OR</small></p>
+                <Button className="continueWithGoogleButton" variant="contained" color="secondary">
+                    <img src={googleLogo} alt="..."/> Continue With Google
+                </Button>
+            </div>
         </div>
     );
 };

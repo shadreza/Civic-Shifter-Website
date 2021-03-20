@@ -11,3 +11,12 @@
     margin: 1rem auto;
 }
 
+.continueWithGoogleButton{
+    width: 100%;
+    text-align: center;
+}
+
+.continueWithGoogleButton img{
+    width: 20px;
+    margin-right: 2rem;
+}

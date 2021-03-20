@@ -9,6 +9,8 @@ import {
   } from "react-router-dom";
 import HomePage from '../HomePage/HomePage';
 import Signup from '../Signup/Signup';
+import Login from '../Login/Login';
+import RidingPage from '../RidingPage/RidingPage';
 
 const Header = () => {
     return (
@@ -35,8 +37,14 @@ const Header = () => {
                 </section>
             </div>
             <Switch>
-                <Route path="/contact">
+                <Route path="/signup">
                     <Signup></Signup>
+                </Route>
+                <Route path="/destination">
+                    <RidingPage></RidingPage>
+                </Route>
+                <Route path="/login">
+                    <Login></Login>
                 </Route>
                 <Route path="/">
                     <HomePage></HomePage>
