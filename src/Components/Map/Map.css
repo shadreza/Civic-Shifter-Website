@@ -1,6 +1,5 @@
 .mapMainDiv{
-    width:96%;
     height: 60vh;
-    text-align: right;
-    margin: 4% 1rem;
+    width:100%;
+    margin: auto;
 }

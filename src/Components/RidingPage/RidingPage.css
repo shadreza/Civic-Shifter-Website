@@ -1,5 +1,18 @@
 .ridingPageMainDiv{
-    display: grid;
-    grid-template-columns: auto auto;
-    grid-gap: 2rem;
+    display: flex;
+    justify-content: space-between;
+    padding:1rem;
+    margin-top: 2rem;
+}
+
+.leftPannelSearch{
+    width:28%;
+    text-align:left;
+    margin: auto 0;
+}
+
+.rightPannelMap{
+    width:68%;
+    text-align:right;
+    margin: auto 0;
 }

@@ -1,0 +1,21 @@
+.searchedResiultInLeftPanelMainDiv{
+    background: aliceblue;
+    padding:1rem;
+    width:100%;
+    border-radius:10px;
+}
+
+strong{
+    color: coral;
+}
+
+.confirmButtonDiv{
+    text-align:center;
+    margin-top: 0.5rem;;
+}
+
+.fromToIndormationDiv{
+    padding: 1rem;
+    background: moccasin;
+    border-radius: 20px;
+}
