@@ -1,0 +1,10 @@
+.cardForTransportMainDiv{
+    background-color: aliceblue;
+    border-radius: 20px;
+    padding: 1rem;
+    text-align: center;
+}
+
+.cardForTransportMainDiv img{
+    width: 200px;
+}

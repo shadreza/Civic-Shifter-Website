@@ -1,0 +1,13 @@
+.homepageMainDiv{
+    padding: 1rem;
+}
+
+.transportsGallerySection{
+    display:grid;
+    grid-template-columns: auto auto auto auto;
+    grid-gap: 1rem;
+}
+
+.transportsGallerySection{
+    margin: 10% auto;
+}
