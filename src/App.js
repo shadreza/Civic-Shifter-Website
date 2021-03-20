@@ -4,7 +4,6 @@ import Header from './Components/Header/Header';
 import firebase from "firebase/app";
 import "firebase/auth";
 import firebaseConfig from "./Components/FireBaseConfig/firebase.config";
-import firebaseui from 'firebaseui';
 export const ContextForUser = createContext([]);
 export const ContextForTransport = createContext([]);
 

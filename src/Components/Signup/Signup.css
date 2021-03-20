@@ -20,3 +20,27 @@
     width: 20px;
     margin-right: 2rem;
 }
+
+.parentTag{
+    margin: auto;
+}
+
+#errorInNameInput{
+    display: none;
+    color: tomato;
+}
+
+#errorInEmailInput{
+    display: none;
+    color: tomato;
+}
+
+#errorInPasswordInput{
+    display: none;
+    color: tomato;
+}
+
+#errorInRetypePasswordInput{
+    display: none;
+    color: tomato;
+}

@@ -14,7 +14,7 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import firebaseConfig from "../FireBaseConfig/firebase.config";
 import { ContextForUser } from '../../App';
-// import firebaseui from 'firebaseui';
+
 const useStyles = makeStyles((theme) => ({
     root: {
       display: 'flex',
@@ -34,16 +34,6 @@ const useStyles = makeStyles((theme) => ({
 const Login = () => {
 
     let history = useHistory();
-
-    // const ui = new firebaseui.auth.AuthUI(firebase.auth());
-    // const logInWithEmail = () => {
-    //     ui.start('#firebaseui-auth-container', {
-    //         signInOptions: [
-    //           firebase.auth.EmailAuthProvider.PROVIDER_ID
-    //         ],
-    //         // Other config options...
-    //       });
-    // }
 
     const userInfoFromContext = useContext(ContextForUser);
 
@@ -75,6 +65,9 @@ const Login = () => {
       weightRange: '',
       showPassword: false,
     });
+
+    const [inputEmail , setInputEmail] = React.useState('');
+    const [inputPassword , setInputPassword] = React.useState('');
   
     const handleChange = (prop) => (event) => {
       setValues({ ...values, [prop]: event.target.value });
@@ -98,7 +91,7 @@ const Login = () => {
                     <Grid item>
                         <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined">
                             <InputLabel htmlFor="component-outlined">Email</InputLabel>
-                            <OutlinedInput id="component-outlined"  label="Email" />
+                            <OutlinedInput id="component-outlined"  label="Email" onChange={(event) => setInputEmail(event.target.value)} />
                         </FormControl>
                     </Grid>
                 </Grid>
@@ -112,6 +105,7 @@ const Login = () => {
                     <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined">
                                 <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
                                 <OutlinedInput
+                                    onChange={(event) => setInputPassword(event.target.value)} 
                                     id="outlined-adornment-password"
                                     type={values.showPassword ? 'text' : 'password'}
                                     value={values.password}

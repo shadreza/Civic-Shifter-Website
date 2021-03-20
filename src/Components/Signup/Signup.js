@@ -40,6 +40,11 @@ const useStyles = makeStyles((theme) => ({
 
 const Signup = () => {
 
+    const [inputEmail , setInputEmail] = React.useState('');
+    const [inputPassword , setInputPassword] = React.useState('');
+    const [inputName , setInputName] = React.useState('');
+    const [inputRetypePassword , setInputRetypePassword] = React.useState('');
+
     let history = useHistory();
 
     const userInfoFromContext = useContext(ContextForUser);
@@ -84,6 +89,67 @@ const Signup = () => {
     const handleMouseDownPassword = (event) => {
       event.preventDefault();
     };
+
+    const [valuesRetype, setValuesRetype] = React.useState({
+        amount: '',
+        password: '',
+        weight: '',
+        weightRange: '',
+        showPassword: false,
+      });
+    
+      const handleChangeRetype = (prop) => (event) => {
+        setValuesRetype({ ...valuesRetype, [prop]: event.target.value });
+      };
+    
+      const handleClickShowPasswordRetype = () => {
+        setValuesRetype({ ...valuesRetype, showPassword: !valuesRetype.showPassword });
+      };
+    
+      const handleMouseDownPasswordRetype = (event) => {
+        event.preventDefault();
+      };
+
+    const validateName = (name) => {
+        if(name.length <= 0){
+            document.getElementById('errorInNameInput').style.display = 'block';
+            return false;
+        }
+        document.getElementById('errorInNameInput').style.display = 'none';
+        return true;
+    }
+
+    const validateEmail = (email) => {
+        var re = /\S+@\S+\.\S+/;
+        if(!re.test(email)){
+            document.getElementById('errorInEmailInput').style.display = 'block';
+            return false;
+        }
+        document.getElementById('errorInEmailInput').style.display = 'none';
+        return true;
+    }
+
+    const validatePassword = (password) => {
+        if(password.length <= 6){
+            document.getElementById('errorInPasswordInput').style.display = 'block';
+            return false;
+        }
+        else{
+            document.getElementById('errorInPasswordInput').style.display = 'none';
+            return true;
+        
+        }
+    }
+
+    const validateRetypePassword = (password) => {
+        if(password !== inputRetypePassword){
+            document.getElementById('errorInRetypePasswordInput').style.display = 'block';
+            return false;
+        }
+        document.getElementById('errorInRetypePasswordInput').style.display = 'none';
+        return true;
+    }
+
     return (
         <div className="signupMainDiv">
             <h3>Create A New Account</h3>
@@ -95,9 +161,10 @@ const Signup = () => {
                     <Grid item>
                         <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined">
                             <InputLabel htmlFor="component-outlined">Name</InputLabel>
-                            <OutlinedInput id="component-outlined"  label="Name" />
+                            <OutlinedInput id="component-outlined"  label="Name" onChange={event => setInputName(event.target.value)} onBlur={() =>validateName(inputName)}/>
                         </FormControl>
                     </Grid>
+                    <p className="parentTag"><small id="errorInNameInput">Name Can't Be Of Zero Length!</small></p>
                 </Grid>
             </div>
             <div className="FieldDiv">
@@ -108,9 +175,10 @@ const Signup = () => {
                     <Grid item>
                         <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined">
                             <InputLabel htmlFor="component-outlined">Email</InputLabel>
-                            <OutlinedInput id="component-outlined"  label="Email" />
+                            <OutlinedInput id="component-outlined"  label="Email" onChange={event => setInputEmail(event.target.value)} onBlur={() =>validateEmail(inputEmail)}/>
                         </FormControl>
                     </Grid>
+                    <p className="parentTag"><small id="errorInEmailInput">Invalid Email!</small></p>
                 </Grid>
             </div>
             <div className="FieldDiv">
@@ -122,10 +190,14 @@ const Signup = () => {
                     <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined">
                                 <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
                                 <OutlinedInput
+                                    onChange={event => {
+                                        setInputPassword(event.target.value) 
+                                    }} 
                                     id="outlined-adornment-password"
                                     type={values.showPassword ? 'text' : 'password'}
                                     value={values.password}
                                     onChange={handleChange('password')}
+                                    onBlur={() =>validatePassword(inputPassword)}
                                     endAdornment={
                                     <InputAdornment position="end">
                                         <IconButton
@@ -141,7 +213,8 @@ const Signup = () => {
                                     labelWidth={70}
                                 />
                             </FormControl>
-                    </Grid>                        
+                    </Grid>
+                    <p className="parentTag"><small id="errorInPasswordInput">Invalid Password . Must Be Atleast 6 characters!</small></p>                        
                 </Grid>
             </div>
             <div className="FieldDiv">
@@ -150,29 +223,34 @@ const Signup = () => {
                         <LockOpenIcon/>
                     </Grid>
                     <Grid item>
-                    <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined">
+                        <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined">
                                 <InputLabel htmlFor="outlined-adornment-password">Retype Password</InputLabel>
                                 <OutlinedInput
+                                    onChange={event => {
+                                        setInputRetypePassword(event.target.value);
+                                    }} 
                                     id="outlined-adornment-retype-password"
-                                    type={values.showPassword ? 'text' : 'password'}
-                                    value={values.password}
-                                    onChange={handleChange('password')}
+                                    type={valuesRetype.showPassword ? 'text' : 'password'}
+                                    value={valuesRetype.password}
+                                    onChange={handleChangeRetype('password')}
                                     endAdornment={
                                     <InputAdornment position="end">
                                         <IconButton
                                         aria-label="toggle password visibility"
-                                        onClick={handleClickShowPassword}
-                                        onMouseDown={handleMouseDownPassword}
+                                        onClick={handleClickShowPasswordRetype}
+                                        onBlur={() =>validateRetypePassword(inputRetypePassword)}
+                                        onMouseDown={handleMouseDownPasswordRetype}
                                         edge="end"
                                         >
-                                        {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                                        {valuesRetype.showPassword ? <Visibility /> : <VisibilityOff />}
                                         </IconButton>
                                     </InputAdornment>
                                     }
                                     labelWidth={70}
                                 />
                             </FormControl>
-                    </Grid>                        
+                    </Grid> 
+                    <p className="parentTag"><small id="errorInRetypePasswordInput">Passwords Don't Match!</small></p>                         
                 </Grid>
             </div>
             <div>
