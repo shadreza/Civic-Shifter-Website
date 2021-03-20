@@ -1,0 +1,13 @@
+.signupMainDiv{
+    background-color: aliceblue;
+    margin: 2rem auto; 
+    padding: 2rem;
+    border-radius: 20px;
+    text-align: center;
+    width:400px;
+}
+
+.FieldDiv{
+    margin: 1rem auto;
+}
+
