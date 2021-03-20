@@ -7,13 +7,13 @@ const Header = () => {
     return (
         <div className="headerMainDiv">
             <section className="headerTitleOnLeft">
-                <Link className="navLinks" to='/home'>
+                <Link className="navLinks" to='/'>
                     <h2>Civic Shifter</h2>
                 </Link>
             </section>
             <section className="headerNavLinksOnRight">
                 <nav>
-                    <Link className="navLinks" to='/home' >Home</Link>
+                    <Link className="navLinks" to='/' >Home</Link>
                     <Link className="navLinks" to='/destination' >Destination</Link>
                     <Link className="navLinks" to='/contact' >Contact</Link>
                     <Link className="navLinks" to='/login' >
