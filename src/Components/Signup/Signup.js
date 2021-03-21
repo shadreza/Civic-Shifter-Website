@@ -158,6 +158,7 @@ const Signup = () => {
                 var user = userCredential.user;
                 console.log('created account');
                 alert("Your Account Was Created Successfully!\n\nPlease Log In.");
+                history.replace('/login');
             })
             .catch((error) => {
                 var errorCode = error.code;
