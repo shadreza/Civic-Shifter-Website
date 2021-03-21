@@ -23,24 +23,40 @@ const useStyles = makeStyles((theme) => ({
 const SearchingInLeftPanel = () => {
     
     const classes = useStyles();
-    const hasBeenSearched = useContext(ContextForHasBeenSearched);
-    const handleConfirmButtonClick = () => {
-        hasBeenSearched[1](true);
-    }
+
     const locationInfoFromContext = useContext(ContextForLocations);
+
+    const hasBeenSearched = useContext(ContextForHasBeenSearched);
+    
+    const handleConfirmButtonClick = () => {
+      validateInput([locationInfoFromContext[0] , "pickUpErrMessage"]) && validateInput([locationInfoFromContext[1] , "destinationErrMessage"]) && hasBeenSearched[1](true);
+    }
+    const validateInput = (props) => {
+      if(props[0][0]===''){
+        document.getElementById(props[1]).style.display="block";
+        return false;
+      }
+      else{
+        document.getElementById(props[1]).style.display="none";
+        return true;
+      }
+    }
+    
     return (
         
             <div className="searchingInLeftPanelMainDiv">
                 <p><strong>Pick Up Location</strong></p>
-                <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined" onChange={event => locationInfoFromContext[0][1](event.target.value)}>
+                <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined" onBlur={() => validateInput([locationInfoFromContext[0] , "pickUpErrMessage"])} onChange={event => locationInfoFromContext[0][1](event.target.value)}>
                     <InputLabel htmlFor="component-outlined">From</InputLabel>
                     <OutlinedInput id="component-outlined"  label="Email" />
                 </FormControl>
+                <p><small className="errorMsgUnderField" id="pickUpErrMessage">Pick Up Location Not Set</small></p>
                 <p><strong>Drop Out Location</strong></p>
-                <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined" onChange={event => locationInfoFromContext[1][1](event.target.value)}>
+                <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined" onBlur={() => validateInput([locationInfoFromContext[1] , "destinationErrMessage"])} onChange={event => locationInfoFromContext[1][1](event.target.value)}>
                     <InputLabel htmlFor="component-outlined">To</InputLabel>
                     <OutlinedInput id="component-outlined"  label="Email" />
                 </FormControl>
+                <p><small className="errorMsgUnderField" id="destinationErrMessage">Destination Location Not Set</small></p>
                 <div className="confirmButtonDiv">
                     <Button variant="contained" color="secondary" onClick={()=>handleConfirmButtonClick()}>
                         Confirm

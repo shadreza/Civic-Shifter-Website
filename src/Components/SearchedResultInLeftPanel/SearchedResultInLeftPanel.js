@@ -14,7 +14,7 @@ const SearchedResultInLeftPanel = () => {
     const locationInfoFromContext = useContext(ContextForLocations);
     return (
         <div className="searchedResiultInLeftPanelMainDiv">
-            <div className="fromToIndormationDiv">
+            <div className="fromToInformationDiv">
                 <p><strong>Pick Up Location</strong></p>
                 <h3>{locationInfoFromContext[0][0]}</h3>
                 <p><strong>Drop Out Location</strong></p>
