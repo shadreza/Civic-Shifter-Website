@@ -12,7 +12,7 @@ import Signup from '../Signup/Signup';
 import Login from '../Login/Login';
 import RidingPage from '../RidingPage/RidingPage';
 import { useHistory } from 'react-router-dom';
-import { ContextForUser } from '../../App';
+import { ContextForTransport, ContextForUser } from '../../App';
 import firebase from 'firebase';
 
 const Header = () => {
@@ -20,6 +20,7 @@ const Header = () => {
     let history = useHistory();
 
     const userInfoFromContext = useContext(ContextForUser);
+    const transportInfoFromContext = useContext(ContextForTransport);
 
     const defaultUser  = {
         name:"not set" ,
@@ -27,11 +28,17 @@ const Header = () => {
         photo: "not set" ,
         isLoggedInOrNot : false
       }
+
+      const defaultTransport = {
+        name:"not set" ,
+        photo: "not set" 
+      }
     
       const handleSignOutButton = () => {
-        userInfoFromContext[1](defaultUser);
         firebase.auth().signOut().then(() => {
             // Sign-out successful.
+            userInfoFromContext[1](defaultUser);
+            transportInfoFromContext[1](defaultTransport);
             alert('Signed Out!');
             console.log('signed out');
           }).catch((error) => {
