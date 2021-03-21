@@ -15,6 +15,7 @@ import { useHistory } from 'react-router-dom';
 import { ContextForTransport, ContextForUser } from '../../App';
 import firebase from 'firebase';
 import PersonalInfo from '../PersonalInfo/PersonalInfo';
+import PrivateRouteForDestinationPath from '../PrivateRouteForDestinationPath/PrivateRouteForDestinationPath';
 
 const Header = () => {
 
@@ -94,9 +95,9 @@ const Header = () => {
                 <Route path="/signup">
                     <Signup></Signup>
                 </Route>
-                <Route path="/destination">
+                <PrivateRouteForDestinationPath path="/destination">
                     <RidingPage></RidingPage>
-                </Route>
+                </PrivateRouteForDestinationPath>
                 <Route path="/login">
                     <Login></Login>
                 </Route>

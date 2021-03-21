@@ -1,12 +1,15 @@
-import React from 'react';
-import { Route } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Redirect, Route } from 'react-router-dom';
+import { ContextForUser } from '../../App';
 
-const PrivateRouteForDestinationPath = () => {
+const PrivateRouteForDestinationPath = ({children , ...rest}) => {
+
+    const userInfoFromContext = useContext(ContextForUser);
     return (
         <Route
       {...rest}
       render={({ location }) =>
-        auth.user ? (
+        userInfoFromContext[0].isLoggedInOrNot === true ? (
           children
         ) : (
           <Redirect
