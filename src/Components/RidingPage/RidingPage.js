@@ -24,6 +24,15 @@ const RidingPage = () => {
         history.replace('/');
     }
 
+    let nameToShow = '';
+    console.log(userInfoFromContext[0]);
+    if(userInfoFromContext[0].name === 'not set' || userInfoFromContext[0].name === null){
+        nameToShow = userInfoFromContext[0].email;
+    }
+    else{
+        nameToShow = userInfoFromContext[0].name;
+    }
+
     const [hasBeenSearchedValue , sethasBeenSearchedValue] = useState(false);
     const [fromLocation , setFromLocation] = useState('');
     const [toLocation , setToLocation] = useState('');
@@ -31,6 +40,9 @@ const RidingPage = () => {
     return (
         <ContextForHasBeenSearched.Provider value={[hasBeenSearchedValue , sethasBeenSearchedValue]}>
             <ContextForLocations.Provider value={[[fromLocation , setFromLocation],[toLocation , setToLocation]]}>
+                <section className="nameOfTheUser">
+                    <p><strong>{nameToShow}</strong></p>
+                </section>
                 <section className="ridingPageMainDiv">
                     <section className="leftPannelSearch">
                         {                    

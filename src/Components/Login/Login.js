@@ -42,6 +42,7 @@ const Login = () => {
         firebase.auth().signInWithPopup(googleProvider)
         .then(response => {
             const {displayName , email , photoURL} = response.user;
+            console.log(response.user);
             const userData = {
                 name: displayName ,
                 email: email ,
@@ -88,8 +89,9 @@ const Login = () => {
             // Signed in
             const user = userCredential.user;
             alert('Log In Successful');
-            console.log(user);
+            
             let {displayName , email , photoURL} = user;
+            console.log(email);
             if(photoURL === null){
                 photoURL = 'https://static.thenounproject.com/png/5024-200.png';
             }
