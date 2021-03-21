@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
       marginTop: theme.spacing(3),
     },
     textField: {
-      width: '40ch',
+      width: '30ch',
     },
   }));
 
@@ -49,7 +49,7 @@ const Login = () => {
                 isLoggedInOrNot : true
             }
             userInfoFromContext[1](userData);
-            history.goBack();
+            history.replace('/');
         })
         .catch(err => {
             alert(err.message);
@@ -109,7 +109,7 @@ const Login = () => {
     }
 
     return (
-        <div className="signupMainDiv">
+        <div className="logInMainDiv">
             <h3>Log In</h3>
             <div className="FieldDiv">
                 <Grid className="gridContainer" container spacing={1} alignItems="flex-end">

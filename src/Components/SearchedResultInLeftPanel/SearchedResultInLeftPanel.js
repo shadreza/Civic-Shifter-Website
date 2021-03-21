@@ -2,30 +2,13 @@ import { Button, FormControl, Grid, InputLabel, makeStyles, OutlinedInput, TextF
 import './SearchedResultInLeftPanel.css';
 import React, { createContext, useContext, useState } from 'react';
 import { ContextForHasBeenSearched, ContextForLocations } from '../RidingPage/RidingPage';
-import clsx from 'clsx';
+
 import { ContextForTransport } from '../../App';
 import TransportCost from '../TransportCost/TransportCost';
 
 
-const useStyles = makeStyles((theme) => ({
-    root: {
-      display: 'flex',
-      flexWrap: 'wrap',
-    },
-    margin: {
-      margin: theme.spacing(1),
-    },
-    withoutLabel: {
-      marginTop: theme.spacing(3),
-    },
-    textField: {
-      width: '46ch',
-    },
-  }));
-
 const SearchedResultInLeftPanel = () => {
     const array = [0,1,2];
-    const classes = useStyles();
     const hasBeenSearched = useContext(ContextForHasBeenSearched);
     const transportInfoFromContext = useContext(ContextForTransport);
     const locationInfoFromContext = useContext(ContextForLocations);

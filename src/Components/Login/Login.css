@@ -1,0 +1,46 @@
+.logInMainDiv{
+    background-color: aliceblue;
+    margin: 2rem auto; 
+    padding: 2rem;
+    border-radius: 20px;
+    text-align: center;
+    width:350px;
+}
+
+.FieldDiv{
+    margin: 1rem auto;
+}
+
+.continueWithGoogleButton{
+    width: 100%;
+    text-align: center;
+}
+
+.continueWithGoogleButton img{
+    width: 20px;
+    margin-right: 2rem;
+}
+
+.parentTag{
+    margin: auto;
+}
+
+#errorInNameInput{
+    display: none;
+    color: tomato;
+}
+
+#errorInEmailInput{
+    display: none;
+    color: tomato;
+}
+
+#errorInPasswordInput{
+    display: none;
+    color: tomato;
+}
+
+#errorInRetypePasswordInput{
+    display: none;
+    color: tomato;
+}

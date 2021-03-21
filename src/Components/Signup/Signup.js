@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
       marginTop: theme.spacing(3),
     },
     textField: {
-      width: '40ch',
+      width: '30ch',
     },
   }));
 
