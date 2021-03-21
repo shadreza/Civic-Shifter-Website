@@ -52,7 +52,7 @@ const Login = () => {
             history.goBack();
         })
         .catch(err => {
-            alert("There Was A Problem Signing In. Please Try Again Later!");
+            alert(err.message);
             console.log(err.code);
         })
     }
@@ -67,7 +67,6 @@ const Login = () => {
     });
 
     const [inputEmail , setInputEmail] = React.useState('');
-    const [inputPassword , setInputPassword] = React.useState('');
   
     const handleChange = (prop) => (event) => {
       setValues({ ...values, [prop]: event.target.value });
@@ -80,6 +79,32 @@ const Login = () => {
     const handleMouseDownPassword = (event) => {
       event.preventDefault();
     };
+
+    const handleLogInButtonClick = () => {
+        const email = inputEmail;
+        const password = values.password;
+        firebase.auth().signInWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+            // Signed in
+            const user = userCredential.user;
+            alert('Log In Successful');
+            console.log(user);
+            const {displayName , email , photoURL} = user;
+            const userData = {
+                name: displayName ,
+                email: email ,
+                photo: photoURL ,
+                isLoggedInOrNot : true
+            }
+            userInfoFromContext[1](userData);
+            history.replace('/');
+        })
+        .catch((error) => {
+            console.log(error.code);
+            alert(error.message);
+        });
+    }
+
     return (
         <div className="signupMainDiv">
             <h3>Log In</h3>
@@ -105,7 +130,6 @@ const Login = () => {
                     <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined">
                                 <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
                                 <OutlinedInput
-                                    onChange={(event) => setInputPassword(event.target.value)} 
                                     id="outlined-adornment-password"
                                     type={values.showPassword ? 'text' : 'password'}
                                     value={values.password}
@@ -129,7 +153,7 @@ const Login = () => {
                 </Grid>
             </div>
             <div>
-                <Button variant="contained" color="secondary">
+                <Button variant="contained" color="secondary" onClick={()=>handleLogInButtonClick()}>
                     Log In
                 </Button>
             </div>  

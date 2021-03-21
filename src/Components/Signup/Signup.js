@@ -41,10 +41,8 @@ const useStyles = makeStyles((theme) => ({
 const Signup = () => {
 
     const [inputEmail , setInputEmail] = React.useState('');
-    const [inputPassword , setInputPassword] = React.useState('');
     const [inputName , setInputName] = React.useState('');
-    const [inputRetypePassword , setInputRetypePassword] = React.useState('');
-
+    
     let history = useHistory();
 
     const userInfoFromContext = useContext(ContextForUser);
@@ -70,6 +68,7 @@ const Signup = () => {
     }
 
     const classes = useStyles();
+
     const [values, setValues] = React.useState({
       amount: '',
       password: '',
@@ -130,24 +129,46 @@ const Signup = () => {
     }
 
     const validatePassword = (password) => {
-        if(password.length <= 6){
+        if(password.length < 6){
             document.getElementById('errorInPasswordInput').style.display = 'block';
             return false;
         }
         else{
             document.getElementById('errorInPasswordInput').style.display = 'none';
             return true;
-        
         }
     }
 
     const validateRetypePassword = (password) => {
-        if(password !== inputRetypePassword){
+        if(password !== values.password){
             document.getElementById('errorInRetypePasswordInput').style.display = 'block';
             return false;
         }
         document.getElementById('errorInRetypePasswordInput').style.display = 'none';
         return true;
+    }
+
+    const handleSignUpButtonClick = () => {
+        if(validateName(inputName) && validateEmail(inputEmail) && validatePassword(values.password) && validateRetypePassword(valuesRetype.password)){
+            const email = inputEmail;
+            const password = values.password;
+            firebase.auth().createUserWithEmailAndPassword(email, password)
+            .then((userCredential) => {
+                // Signed in 
+                var user = userCredential.user;
+                console.log('created account');
+                alert("Your Account Was Created Successfully!\n\nPlease Log In.");
+            })
+            .catch((error) => {
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                console.log(errorCode , errorMessage);
+                console.log('could not created account');
+                if(errorCode==='auth/email-already-in-use'){
+                    alert(errorMessage);
+                }
+            });
+        } 
     }
 
     return (
@@ -187,32 +208,32 @@ const Signup = () => {
                         <LockIcon/>
                     </Grid>
                     <Grid item>
-                    <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined">
-                                <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
-                                <OutlinedInput
-                                    onChange={event => {
-                                        setInputPassword(event.target.value) 
-                                    }} 
-                                    id="outlined-adornment-password"
-                                    type={values.showPassword ? 'text' : 'password'}
-                                    value={values.password}
-                                    onChange={handleChange('password')}
-                                    onBlur={() =>validatePassword(inputPassword)}
-                                    endAdornment={
-                                    <InputAdornment position="end">
-                                        <IconButton
-                                        aria-label="toggle password visibility"
-                                        onClick={handleClickShowPassword}
-                                        onMouseDown={handleMouseDownPassword}
-                                        edge="end"
-                                        >
-                                        {values.showPassword ? <Visibility /> : <VisibilityOff />}
-                                        </IconButton>
-                                    </InputAdornment>
-                                    }
-                                    labelWidth={70}
-                                />
-                            </FormControl>
+                        <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined">
+                            <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+                            <OutlinedInput
+                                id="outlined-adornment-password"
+                                type={values.showPassword ? 'text' : 'password'}
+                                value={values.password}
+                                onChange={handleChange('password')}
+                                onBlur={()=>{
+                                    validatePassword(values.password);
+                                    validateRetypePassword(valuesRetype.password);
+                                }}
+                                endAdornment={
+                                <InputAdornment position="end">
+                                    <IconButton
+                                    aria-label="toggle password visibility"
+                                    onClick={handleClickShowPassword}
+                                    onMouseDown={handleMouseDownPassword}
+                                    edge="end"
+                                    >
+                                    {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                                    </IconButton>
+                                </InputAdornment>
+                                }
+                                labelWidth={70}
+                            />
+                        </FormControl>
                     </Grid>
                     <p className="parentTag"><small id="errorInPasswordInput">Invalid Password . Must Be Atleast 6 characters!</small></p>                        
                 </Grid>
@@ -226,19 +247,16 @@ const Signup = () => {
                         <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined">
                                 <InputLabel htmlFor="outlined-adornment-password">Retype Password</InputLabel>
                                 <OutlinedInput
-                                    onChange={event => {
-                                        setInputRetypePassword(event.target.value);
-                                    }} 
                                     id="outlined-adornment-retype-password"
                                     type={valuesRetype.showPassword ? 'text' : 'password'}
                                     value={valuesRetype.password}
                                     onChange={handleChangeRetype('password')}
+                                    onBlur={() =>validateRetypePassword(valuesRetype.password)}
                                     endAdornment={
                                     <InputAdornment position="end">
                                         <IconButton
                                         aria-label="toggle password visibility"
                                         onClick={handleClickShowPasswordRetype}
-                                        onBlur={() =>validateRetypePassword(inputRetypePassword)}
                                         onMouseDown={handleMouseDownPasswordRetype}
                                         edge="end"
                                         >
@@ -254,7 +272,7 @@ const Signup = () => {
                 </Grid>
             </div>
             <div>
-                <Button variant="contained" color="secondary">
+                <Button variant="contained" color="secondary" onClick={()=>handleSignUpButtonClick()}>
                     Sign Up
                 </Button>
             </div>  

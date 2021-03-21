@@ -13,6 +13,7 @@ import Login from '../Login/Login';
 import RidingPage from '../RidingPage/RidingPage';
 import { useHistory } from 'react-router-dom';
 import { ContextForUser } from '../../App';
+import firebase from 'firebase';
 
 const Header = () => {
 
@@ -29,6 +30,16 @@ const Header = () => {
     
       const handleSignOutButton = () => {
         userInfoFromContext[1](defaultUser);
+        firebase.auth().signOut().then(() => {
+            // Sign-out successful.
+            alert('Signed Out!');
+            console.log('signed out');
+          }).catch((error) => {
+            // An error happened.
+            alert(error.message);
+            console.log(error.code);
+          });
+          
       }
 
     
