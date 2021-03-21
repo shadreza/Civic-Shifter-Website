@@ -1,0 +1,15 @@
+.PersonalInfoMainDiv{
+    text-align: center;
+}
+.infoCardDiv{
+    background-color: white;
+    padding: 1rem;
+    width: 300px;
+    margin: 2rem auto;
+    border-radius:20px;
+}
+
+.infoCardDiv img{
+    width: 120px;
+    border-radius: 100%;
+}

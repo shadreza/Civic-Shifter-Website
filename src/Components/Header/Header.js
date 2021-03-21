@@ -14,6 +14,7 @@ import RidingPage from '../RidingPage/RidingPage';
 import { useHistory } from 'react-router-dom';
 import { ContextForTransport, ContextForUser } from '../../App';
 import firebase from 'firebase';
+import PersonalInfo from '../PersonalInfo/PersonalInfo';
 
 const Header = () => {
 
@@ -58,14 +59,11 @@ const Header = () => {
                         <h2>Civic Shifter</h2>
                     </Link>
                 </section>
-                <section className="headerUserImageInMiddle">
-                    {userInfoFromContext[0].photo !== "not set" && <img className="imageOfUser" src={userInfoFromContext[0].photo}></img>}
-                </section>
+                
                 <section className="headerNavLinksOnRight">
                     <nav>
                         <Link className="navLinks" to='/' >Home</Link>
                         <Link className="navLinks" to='/destination' >Destination</Link>
-                        <Link className="navLinks" to='/contact' >Contact</Link>
                         {
                             userInfoFromContext[0].isLoggedInOrNot ===  false ? 
                                 <Link className="navLinks" to='/login' >
@@ -83,11 +81,16 @@ const Header = () => {
                                     }
                                 </Link>
                         }
-                        
+                        <Link className="navLinks" to='/personalInfo' >
+                           {userInfoFromContext[0].photo !== "not set" && <img className="imageOfUser" src={userInfoFromContext[0].photo}></img>} 
+                        </Link>
                     </nav>
                 </section>
             </div>
             <Switch>
+                <Route path="/personalInfo">
+                    <PersonalInfo></PersonalInfo>
+                </Route>
                 <Route path="/signup">
                     <Signup></Signup>
                 </Route>

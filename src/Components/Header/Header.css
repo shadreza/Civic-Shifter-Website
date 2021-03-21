@@ -1,7 +1,6 @@
 .headerMainDiv{
     display:flex;
     padding:0;
-    
 }
 
 .headerTitleOnLeft{
@@ -15,6 +14,10 @@
     margin: auto;
     width:80%;
     text-align:right;
+    display:table;
+    float: left;
+    vertical-align:middle;
+    height:60px;
 }
 
 .navLinks{
@@ -28,7 +31,14 @@
     color: coral;
 }
 
+.headerNavLinksOnRight nav .navLinks:hover{
+    color: greenyellow; 
+}
+
 .imageOfUser{
-    width:100%;
+    width:50px;
     border-radius: 100%;
+    margin: auto;
+    position: relative;
+    top: 10px;
 }

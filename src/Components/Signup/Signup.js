@@ -152,6 +152,7 @@ const Signup = () => {
         if(validateName(inputName) && validateEmail(inputEmail) && validatePassword(values.password) && validateRetypePassword(valuesRetype.password)){
             const email = inputEmail;
             const password = values.password;
+            
             firebase.auth().createUserWithEmailAndPassword(email, password)
             .then((userCredential) => {
                 // Signed in 

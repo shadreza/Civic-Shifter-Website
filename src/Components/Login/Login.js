@@ -89,7 +89,10 @@ const Login = () => {
             const user = userCredential.user;
             alert('Log In Successful');
             console.log(user);
-            const {displayName , email , photoURL} = user;
+            let {displayName , email , photoURL} = user;
+            if(photoURL === null){
+                photoURL = 'https://static.thenounproject.com/png/5024-200.png';
+            }
             const userData = {
                 name: displayName ,
                 email: email ,

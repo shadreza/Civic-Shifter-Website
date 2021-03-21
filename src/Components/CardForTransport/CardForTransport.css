@@ -5,6 +5,10 @@
     text-align: center;
 }
 
+.cardForTransportMainDiv:hover{
+    cursor: pointer;
+}
+
 .cardForTransportMainDiv img{
     width: 200px;
 }
