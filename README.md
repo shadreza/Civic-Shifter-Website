@@ -4,7 +4,7 @@
 
 # live site link : https://civic-shifter.web.app/
 
-# feaures:
+# features:
 
 1. sign in option with google and email
 2. showing user photo , name and email after login
