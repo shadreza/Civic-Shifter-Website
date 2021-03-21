@@ -6,12 +6,19 @@ import { ContextForHasBeenSearched, ContextForLocations } from '../RidingPage/Ri
 import { ContextForTransport } from '../../App';
 import TransportCost from '../TransportCost/TransportCost';
 
+// component to show he searched result 
 
 const SearchedResultInLeftPanel = () => {
+
+    // the array is for looping for 3 times
     const array = [0,1,2];
+
+    // initializing
     const hasBeenSearched = useContext(ContextForHasBeenSearched);
     const transportInfoFromContext = useContext(ContextForTransport);
     const locationInfoFromContext = useContext(ContextForLocations);
+
+
     return (
         <div className="searchedResiultInLeftPanelMainDiv">
             <div className="fromToInformationDiv">

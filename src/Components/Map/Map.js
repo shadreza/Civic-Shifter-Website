@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './Map.css';
 import GoogleMapReact from 'google-map-react';
+
+// map component for the google map
  
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
  

@@ -1,3 +1,5 @@
+// this is the firebase config file from the firebase website
+
 const firebaseConfig = {
     apiKey: "AIzaSyA23dcIL94d05PKG88-4XGQeZeHgI5Gxwo",
     authDomain: "civic-shifter.firebaseapp.com",

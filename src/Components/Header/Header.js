@@ -17,13 +17,16 @@ import firebase from 'firebase';
 import PersonalInfo from '../PersonalInfo/PersonalInfo';
 import PrivateRouteForDestinationPath from '../PrivateRouteForDestinationPath/PrivateRouteForDestinationPath';
 
+// this component is the main header that is both dynamic and always visible and the main routes are in this component
+
 const Header = () => {
 
+    // initializing necessities
     let history = useHistory();
-
     const userInfoFromContext = useContext(ContextForUser);
     const transportInfoFromContext = useContext(ContextForTransport);
 
+    // setting up default user and default transport for by default use
     const defaultUser  = {
         name:"not set" ,
         email: "not set" ,
@@ -36,6 +39,7 @@ const Header = () => {
         photo: "not set" 
       }
     
+    //   when sign i nbutton is clicked 
       const handleSignOutButton = () => {
         firebase.auth().signOut().then(() => {
             // Sign-out successful.
@@ -53,6 +57,8 @@ const Header = () => {
 
     
     return (
+
+        // the main router and switches and links
         <Router>
             <div className="headerMainDiv">
                 <section className="headerTitleOnLeft">
@@ -88,6 +94,8 @@ const Header = () => {
                     </nav>
                 </section>
             </div>
+
+            {/* switches for the router */}
             <Switch>
                 <Route path="/personalInfo">
                     <PersonalInfo></PersonalInfo>

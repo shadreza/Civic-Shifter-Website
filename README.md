@@ -21,6 +21,8 @@
 13. the user profile photo is set t be dynamic as if the user is not logged in then nothing will show and if the user is logged in but no image is attached to it then it will display a default image but when image is attached then it will show that picture
 14. if the user photo is clicked then the information of the user is shown
 15. google map was implemented here
+16. name of the user is shown in the riding page
+17. commented code for better understanding in the github repo
 
 # Special Thanks to Jhankar Vai & PH team for increasing one day as I really am satisfied with the coding
 

@@ -4,6 +4,9 @@ import React, { createContext, useContext, useState } from 'react';
 import { ContextForHasBeenSearched, ContextForLocations } from '../RidingPage/RidingPage';
 import clsx from 'clsx';
 
+// component for the searching section
+
+// style from material ui
 const useStyles = makeStyles((theme) => ({
     root: {
       display: 'flex',
@@ -22,15 +25,17 @@ const useStyles = makeStyles((theme) => ({
 
 const SearchingInLeftPanel = () => {
     
+    // initializing the contexts and style
     const classes = useStyles();
-
     const locationInfoFromContext = useContext(ContextForLocations);
-
     const hasBeenSearched = useContext(ContextForHasBeenSearched);
     
+    // when the confirm button for searching the vehicle is pressed
     const handleConfirmButtonClick = () => {
       validateInput([locationInfoFromContext[0] , "pickUpErrMessage"]) && validateInput([locationInfoFromContext[1] , "destinationErrMessage"]) && hasBeenSearched[1](true);
     }
+
+    // validation of the input field
     const validateInput = (props) => {
       if(props[0][0]===''){
         document.getElementById(props[1]).style.display="block";

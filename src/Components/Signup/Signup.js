@@ -21,7 +21,9 @@ import "firebase/auth";
 import firebaseConfig from "../FireBaseConfig/firebase.config";
 import { ContextForUser } from '../../App';
 
+// signup page which will be used for signing up the user and also this will redirect to log in if a successful sign up is done
 
+// style from material ui
 const useStyles = makeStyles((theme) => ({
     root: {
       display: 'flex',
@@ -40,14 +42,14 @@ const useStyles = makeStyles((theme) => ({
 
 const Signup = () => {
 
+    // initializing and setting up from context , history , states , google auth providers and others
     const [inputEmail , setInputEmail] = React.useState('');
     const [inputName , setInputName] = React.useState('');
-    
     let history = useHistory();
-
     const userInfoFromContext = useContext(ContextForUser);
-
     const googleProvider = new firebase.auth.GoogleAuthProvider();
+
+    // button function for the continue with google option
     const handleContinueWithGoogleButton = () => {
         firebase.auth().signInWithPopup(googleProvider)
         .then(response => {
@@ -67,8 +69,10 @@ const Signup = () => {
         })
     }
 
+    // from material ui to use the password field
     const classes = useStyles();
 
+    // this and under is for the password field
     const [values, setValues] = React.useState({
       amount: '',
       password: '',
@@ -76,7 +80,7 @@ const Signup = () => {
       weightRange: '',
       showPassword: false,
     });
-  
+
     const handleChange = (prop) => (event) => {
       setValues({ ...values, [prop]: event.target.value });
     };
@@ -89,6 +93,7 @@ const Signup = () => {
       event.preventDefault();
     };
 
+    // this and under is for the retype password field
     const [valuesRetype, setValuesRetype] = React.useState({
         amount: '',
         password: '',
@@ -109,6 +114,7 @@ const Signup = () => {
         event.preventDefault();
       };
 
+    // validates the name field
     const validateName = (name) => {
         if(name.length <= 0){
             document.getElementById('errorInNameInput').style.display = 'block';
@@ -118,6 +124,7 @@ const Signup = () => {
         return true;
     }
 
+    // validates email field
     const validateEmail = (email) => {
         var re = /\S+@\S+\.\S+/;
         if(!re.test(email)){
@@ -128,6 +135,7 @@ const Signup = () => {
         return true;
     }
 
+    // validates password field
     const validatePassword = (password) => {
         if(password.length < 6){
             document.getElementById('errorInPasswordInput').style.display = 'block';
@@ -139,6 +147,7 @@ const Signup = () => {
         }
     }
 
+    // validates retype password field
     const validateRetypePassword = (password) => {
         if(password !== values.password){
             document.getElementById('errorInRetypePasswordInput').style.display = 'block';
@@ -148,6 +157,7 @@ const Signup = () => {
         return true;
     }
 
+    // button functionality when sign up button is clicked 
     const handleSignUpButtonClick = () => {
         if(validateName(inputName) && validateEmail(inputEmail) && validatePassword(values.password) && validateRetypePassword(valuesRetype.password)){
             const email = inputEmail;

@@ -5,16 +5,18 @@ import { useHistory } from 'react-router-dom';
 import { ContextForTransport, ContextForUser } from '../../App';
 import './CardForTransport.css';
 
+// this component is for the single cards that hold the info of the transport or vehicle and will be shown in the homepage as the element in the gallery
+
 const CardForTransport = (props) => {
 
+    // initializing necessary things
     let history = useHistory();
-
     const {nameOfTheTransport , imageOfTheTransport} = props.cardInfo;
-
     const transportInfoFromContext = useContext(ContextForTransport);
-
     const userInfoFromContext = useContext(ContextForUser);
 
+
+    // when the element or a single card or the transport is clicked
     const handleClickOnDiv = () => {
         const transportInfo = {
             name: nameOfTheTransport ,

@@ -1,9 +1,12 @@
 import React from 'react';
 import './TransportCost.css';
 
+// this component is in the searched result and will show the cost for the selected transport to go to the destination -- dummy values are used
+
 const TransportCost = (props) => {
     const {name , photo} = props.transportData[0];
-    console.log(name);
+    
+    // setting up the fake data
     let fare = 0.0;
     if(name === 'Bike'){
         fare = 150.00;
@@ -20,6 +23,7 @@ const TransportCost = (props) => {
     else{
         fare = 0.0;
     }
+
     return (
         <div className='transportCostMainDiv'>
             <div className="leftSideImage">

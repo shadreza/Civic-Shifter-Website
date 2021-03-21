@@ -15,6 +15,9 @@ import "firebase/auth";
 import firebaseConfig from "../FireBaseConfig/firebase.config";
 import { ContextForUser } from '../../App';
 
+// this is the login in page component where the user will be asked to log in 
+
+// style from material-ui
 const useStyles = makeStyles((theme) => ({
     root: {
       display: 'flex',
@@ -33,11 +36,12 @@ const useStyles = makeStyles((theme) => ({
 
 const Login = () => {
 
+    // initializing the necessary things
     let history = useHistory();
-
     const userInfoFromContext = useContext(ContextForUser);
-
     const googleProvider = new firebase.auth.GoogleAuthProvider();
+
+    // when continue with google button is pressed
     const handleContinueWithGoogleButton = () => {
         firebase.auth().signInWithPopup(googleProvider)
         .then(response => {
@@ -58,6 +62,7 @@ const Login = () => {
         })
     }
 
+    // setting state for the password field
     const classes = useStyles();
     const [values, setValues] = React.useState({
       amount: '',
@@ -67,8 +72,10 @@ const Login = () => {
       showPassword: false,
     });
 
+    // declaring the email state
     const [inputEmail , setInputEmail] = React.useState('');
   
+    // setting the password when being changed and other operations from material ui here and under
     const handleChange = (prop) => (event) => {
       setValues({ ...values, [prop]: event.target.value });
     };
@@ -81,6 +88,7 @@ const Login = () => {
       event.preventDefault();
     };
 
+    // when log in buttton is clicked
     const handleLogInButtonClick = () => {
         const email = inputEmail;
         const password = values.password;
