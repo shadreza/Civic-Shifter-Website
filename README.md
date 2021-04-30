@@ -1,6 +1,8 @@
 # Civic-Shfter
 
-# github Link : https://github.com/Porgramming-Hero-web-course/react-auth-shadreza
+an online riding website that has similarities of uber & pathao
+
+# github Link : https://github.com/shadreza/Civic-Shifter-Website.git
 
 # live site link : https://civic-shifter.web.app/
 
